@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "javascript-amazon-project-original"
+		},
+		{
+			"path": "../../Users/Tonislav Zhoevski/Downloads/jasmine-standalone-5.1.1"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "javascript-amazon-project-original"
+	}
+}
