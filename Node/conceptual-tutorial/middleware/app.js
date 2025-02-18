@@ -2,18 +2,28 @@ const express = require('express');
 
 const app = express();
 
-app.use(middleware1);
-
 function middleware1 (req, res, next) {
-  console.log('I am a middleware');
+  req.customProperty = 100;
   next();
 }
 
-function standartExpressCallback(requestObject, responseObject, nextMiddleware) {
-  console.log('I am the standart Express function');
-  responseObject.send('<h1>Hello World</h1>');
+function middleware2 (req, res, next) {
+  console.log(`The custom property value is: ${req.customProperty}`);
+  req.customProperty = 600;
+  next();
 }
 
-app.get('/', standartExpressCallback);
+function errorHandler(err, req, res, next) {
+  res.json({ err: err });
+}
+
+app.use(middleware1);
+app.use(middleware2);
+
+app.get('/', (req, res, next) => {
+  res.send(`<h1>The valuie is: ${req.customProperty}</h1>`);
+});
+
+app.use(errorHandler);
 
 app.listen(3000);
